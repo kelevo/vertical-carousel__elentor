@@ -1,0 +1,57 @@
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+if (window.innerWidth > 1024){
+let parent = document.querySelector('.parentsection .elementor-widget-wrap');
+let children = parent.querySelectorAll('.swipee');
+let wrapper = document.createElement('div');
+wrapper.className = 'swiper-wrapper';
+
+children.forEach((child) => {
+wrapper.appendChild(child);
+child.classList.add('swiper-slide');
+});
+
+let container = document.createElement('div');
+container.className = 'swiper-container';
+
+container.prepend(wrapper);
+
+parent.prepend(container);
+
+let pagination = document.createElement('div');
+pagination.className = 'swiper-pagination';
+container.prepend(pagination);
+
+var swiper = new Swiper('.swiper-container', {
+direction: 'vertical',
+slidesPerView: 1,
+spaceBetween: 30,
+mousewheel: {
+releaseOnEdges:true,
+},
+pagination: {
+el: '.swiper-pagination',
+clickable: true,
+},
+navigation: {
+nextEl: '.swipee-down',
+prevEl: '.swipee-up',
+},
+});
+}
+</script>
+
+<style>
+.elementor-element.elementor-absolute.swipee-up, .elementor-element.elementor-absolute.swipee-down{
+z-index: 99;
+cursor: pointer;
+line-height: 0;
+}
+.parentsection .swiper-wrapper{
+height: 440px; /* Height of swiper */
+}
+.parentsection .swiper-pagination{
+transform: scale(2.6);
+padding-right: 4px
+}
+</style>
